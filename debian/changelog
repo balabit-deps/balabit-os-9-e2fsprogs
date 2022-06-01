@@ -1,3 +1,38 @@
+e2fsprogs (1.46.5-2ubuntu1.1) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds read/write vulnerability
+    Issue leads to segmentation fault and possibly arbitrary code
+    execution via a specially crafted filesystem.
+    - debian/patches/CVE-2022-1304.patch: checks that all leaf nodes of
+      file system contain at least one extent.
+    - CVE-2022-1304
+
+ -- Mark Esler <mark.esler@canonical.com>  Wed, 01 Jun 2022 18:15:15 -0500
+
+e2fsprogs (1.46.5-2ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 08 Jan 2022 21:02:36 +0100
+
+e2fsprogs (1.46.5-2) unstable; urgency=medium
+
+  * Fix build on GNU/kFreeBSD (caused by the fact that the Debian port has
+    an ancient version of coreutils, so the timeout program doesn't support
+    the -v option.
+
+ -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 03 Jan 2022 23:48:13 -0500
+
+e2fsprogs (1.46.5-1ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 01 Jan 2022 22:41:06 +0100
+
 e2fsprogs (1.46.5-1) unstable; urgency=medium
 
   * New upstream release
@@ -23,6 +58,14 @@ e2fsprogs (1.46.5-1) unstable; urgency=medium
   * Update the Debian policy compliance to 4.6.0.
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Thu, 30 Dec 2021 00:35:14 -0500
+
+e2fsprogs (1.46.4-1ubuntu1) jammy; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Wed, 03 Nov 2021 09:32:13 +0100
 
 e2fsprogs (1.46.4-1) unstable; urgency=medium
 
@@ -51,6 +94,32 @@ e2fsprogs (1.46.4-1) unstable; urgency=medium
     translations.
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Wed, 18 Aug 2021 22:47:40 -0400
+
+e2fsprogs (1.46.3-1ubuntu3) impish; urgency=medium
+
+  * Restore mke2fs capability to create files adding patch
+
+    - mke2fs: fix creating a file system image w/o a pre-existing file
+
+ -- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>  Mon, 30 Aug 2021 17:58:29 +0200
+
+e2fsprogs (1.46.3-1ubuntu2) impish; urgency=medium
+
+  * Fix failing tests on bigendian system (LP: #1939409)
+    using upstream patches queued for 1.46.4:
+
+    - e2fsck: fix f_baddotdir failure on big-endian systems
+    - libext2fs: fix translation of Posix ACL's on big-endian systems
+
+ -- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>  Wed, 11 Aug 2021 19:04:33 +0200
+
+e2fsprogs (1.46.3-1ubuntu1) impish; urgency=medium
+
+  * Merge from Debian experimental. Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>  Tue, 10 Aug 2021 10:07:26 +0200
 
 e2fsprogs (1.46.3-1) experimental; urgency=medium
 
@@ -109,6 +178,20 @@ e2fsprogs (1.46.2-2) unstable; urgency=medium
   * Clean up and improve the man page for e2image
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 07 Jun 2021 07:27:15 -0400
+
+e2fsprogs (1.46.2-1ubuntu2) impish; urgency=medium
+
+  * Apply upstream fix for unaligned memory access.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 27 May 2021 13:20:34 +0200
+
+e2fsprogs (1.46.2-1ubuntu1) impish; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 10 May 2021 14:31:18 +0200
 
 e2fsprogs (1.46.2-1) unstable; urgency=medium
 
@@ -200,6 +283,20 @@ e2fsprogs (1.46.0-1) experimental; urgency=medium
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Fri, 29 Jan 2021 16:24:41 -0500
 
+e2fsprogs (1.45.7-1ubuntu2) hirsute; urgency=medium
+
+  * No-change rebuild to drop the udeb package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 22 Feb 2021 10:30:51 +0100
+
+e2fsprogs (1.45.7-1ubuntu1) hirsute; urgency=low
+
+  * Merge from Debian unstable. Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 29 Jan 2021 12:37:12 -0800
+
 e2fsprogs (1.45.7-1) unstable; urgency=medium
 
   * New upstream release
@@ -245,6 +342,14 @@ e2fsprogs (1.45.7-1) unstable; urgency=medium
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Fri, 29 Jan 2021 00:19:52 -0500
 
+e2fsprogs (1.45.6-1ubuntu1) groovy; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 01 May 2020 14:47:58 -0700
+
 e2fsprogs (1.45.6-1) unstable; urgency=medium
 
   * New upstream release
@@ -268,6 +373,21 @@ e2fsprogs (1.45.6-1) unstable; urgency=medium
   * Update the Malay translation from the translation project.
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Fri, 20 Mar 2020 23:49:33 -0400
+
+e2fsprogs (1.45.5-2ubuntu1) focal; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+  * Dropped changes, included upstream:
+    - debian/patches/CVE-2019-5188-*.patch:  abort if there is a corrupted
+      directory block when rehashing and don't try to rehash a deleted directory
+      in e2fsck/rehash.c, e2fsck/pass1b.c.
+    - debian/patches/CVE-2019-5094.patch: add checks to prevent
+      buffer overrun in quota code in lib/support/quotaio_tree.c,
+      lib/support/quotaio_v2.c, lib/support/mkquota.c.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 13 Feb 2020 22:08:18 -0800
 
 e2fsprogs (1.45.5-2) unstable; urgency=medium
 
@@ -341,6 +461,34 @@ e2fsprogs (1.45.4-1) unstable; urgency=medium
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 23 Sep 2019 15:31:27 -0400
 
+e2fsprogs (1.45.3-4ubuntu3) focal; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds write
+    - debian/patches/CVE-2019-5188-*.patch:  abort if there is a corrupted
+      directory block when rehashing and don't try to rehash a deleted directory
+      in e2fsck/rehash.c, e2fsck/pass1b.c.
+    - CVE-2019-5188
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Wed, 22 Jan 2020 12:01:15 -0300
+
+e2fsprogs (1.45.3-4ubuntu2) eoan; urgency=medium
+
+  * SECURITY UPDATE: Out-of-bounds write on the heap
+    - debian/patches/CVE-2019-5094.patch: add checks to prevent
+      buffer overrun in quota code in lib/support/quotaio_tree.c,
+      lib/support/quotaio_v2.c, lib/support/mkquota.c.
+    - CVE-2019-5094
+
+ -- Leonidas S. Barbosa <leo.barbosa@canonical.com>  Mon, 30 Sep 2019 14:57:59 -0300
+
+e2fsprogs (1.45.3-4ubuntu1) eoan; urgency=medium
+
+  * Merge with Debian testing, remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf stanzas, so lvm migration
+      between non-4k PVs and 4k PVs works regardless of the volume size.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Sun, 08 Sep 2019 04:12:08 -0600
+
 e2fsprogs (1.45.3-4) unstable; urgency=medium
 
   * stop using Link Time Optimization; it breaks reproducible builds
@@ -401,6 +549,15 @@ e2fsprogs (1.45.3-1) unstable; urgency=medium
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Sun, 14 Jul 2019 21:01:11 -0400
 
+e2fsprogs (1.45.2-1ubuntu1) eoan; urgency=medium
+
+  * Merge with Debian; remaining changes:
+    - Use 4k blocksize in all ext4 mke2fs.conf such that lvm migration
+      between non-4k PVs and 4k PVs works irrespective of the volume
+      size.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 24 Jun 2019 11:51:53 +0200
+
 e2fsprogs (1.45.2-1) unstable; urgency=medium
 
   * New upstream version
@@ -427,6 +584,14 @@ e2fsprogs (1.45.1-2) unstable; urgency=medium
     no lvm devices present in the system (Closes: #928977, #929186, #929254)
 
  -- Theodore Y. Ts'o <tytso@mit.edu>  Mon, 20 May 2019 11:02:09 -0400
+
+e2fsprogs (1.45.1-1ubuntu1) eoan; urgency=medium
+
+  * Use 4k blocksize in all ext4 mke2fs.conf such that lvm migration
+    between non-4k PVs and 4k PVs works irrespective of the volume
+    size. LP: #1817097
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Wed, 15 May 2019 16:15:22 +0200
 
 e2fsprogs (1.45.1-1) unstable; urgency=medium
 
