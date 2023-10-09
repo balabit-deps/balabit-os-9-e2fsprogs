@@ -1,3 +1,13 @@
+e2fsprogs (1.46.5-2ubuntu1.2) jammy; urgency=medium
+
+  * Fix superblock checksum mismatch during resize2fs operations,
+    most notably during online resize of cloud images during boot.
+    Read the superblock with Direct I/O to ensure we get the correct
+    view of the disk. (LP: #2036467)
+    - lp2036467-resize2fs-use-Direct-I-O-when-reading-the-superblock.patch
+
+ -- Matthew Ruffell <matthew.ruffell@canonical.com>  Mon, 09 Oct 2023 14:50:10 +1300
+
 e2fsprogs (1.46.5-2ubuntu1.1) jammy-security; urgency=medium
 
   * SECURITY UPDATE: Out-of-bounds read/write vulnerability

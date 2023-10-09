@@ -1,0 +1,32 @@
+commit 43a498e938887956f393b5e45ea6ac79cc5f4b84
+Author: Theodore Ts'o <tytso@mit.edu>
+Date: Thu, 15 Jun 2023 00:17:01 -0400
+Subject: resize2fs: use Direct I/O when reading the superblock for
+ online resizes
+ 
+ If the file system is mounted, the superblock can be changing while
+ resize2fs is trying to read the superblock, resulting in checksum
+ failures.  One way of avoiding this problem is read the superblock
+ using Direct I/O, since the kernel makes sure that what gets written
+ to disk is self-consistent.
+ 
+ Suggested-by: Krister Johansen <kjlx@templeofstupid.com>
+ Signed-off-by: Theodore Ts'o <tytso@mit.edu>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/2036467
+Bug: https://lore.kernel.org/linux-ext4/20230609042239.GA1436857@mit.edu/
+Origin: upstream, https://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git/commit/?id=43a498e938887956f393b5e45ea6ac79cc5f4b84
+Last-Update: 2023-10-09
+
+Index: e2fsprogs-1.46.5/resize/main.c
+===================================================================
+--- e2fsprogs-1.46.5.orig/resize/main.c	2023-10-09 14:50:02.578708214 +1300
++++ e2fsprogs-1.46.5/resize/main.c	2023-10-09 14:50:02.574707990 +1300
+@@ -403,6 +403,8 @@
+ 
+ 	if (!(mount_flags & EXT2_MF_MOUNTED))
+ 		io_flags = EXT2_FLAG_RW | EXT2_FLAG_EXCLUSIVE;
++	if (mount_flags & EXT2_MF_MOUNTED)
++		io_flags |= EXT2_FLAG_DIRECT_IO;
+ 
+ 	io_flags |= EXT2_FLAG_64BITS | EXT2_FLAG_THREADS;
+ 	if (undo_file) {
